@@ -1,9 +1,12 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './lib/auth';
 import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import RobotDetail from './pages/RobotDetail';
 import Checkout from './pages/Checkout';
 import PaymentSuccess from './pages/PaymentSuccess';
+import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminHome from './pages/AdminHome';
 import AdminUpload from './pages/AdminUpload';
@@ -22,22 +25,34 @@ function ClientLayout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <HashRouter>
-      <Routes>
-        {/* ─── Client Routes (public, with navbar) ─── */}
-        <Route path="/" element={<ClientLayout><Home /></ClientLayout>} />
-        <Route path="/ea/:id" element={<ClientLayout><RobotDetail /></ClientLayout>} />
-        <Route path="/checkout" element={<ClientLayout><Checkout /></ClientLayout>} />
-        <Route path="/payment-success" element={<ClientLayout><PaymentSuccess /></ClientLayout>} />
+    <AuthProvider>
+      <HashRouter>
+        <Routes>
+          {/* ─── Client Routes (public, with navbar) ─── */}
+          <Route path="/" element={<ClientLayout><Home /></ClientLayout>} />
+          <Route path="/ea/:id" element={<ClientLayout><RobotDetail /></ClientLayout>} />
+          <Route path="/checkout" element={<ClientLayout><Checkout /></ClientLayout>} />
+          <Route path="/payment-success" element={<ClientLayout><PaymentSuccess /></ClientLayout>} />
 
-        {/* ─── Admin Routes (hidden, separate layout, no public navbar) ─── */}
-        <Route path="/admin" element={<AdminDashboard />}>
-          <Route index element={<AdminHome />} />
-          <Route path="upload" element={<AdminUpload />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="settings" element={<AdminSettings />} />
-        </Route>
-      </Routes>
-    </HashRouter>
+          {/* ─── Admin Auth ─── */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* ─── Admin Routes (protected, separate layout, no public navbar) ─── */}
+          <Route 
+            path="/admin" 
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<AdminHome />} />
+            <Route path="upload" element={<AdminUpload />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
+        </Routes>
+      </HashRouter>
+    </AuthProvider>
   );
 }

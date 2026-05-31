@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/auth-helpers-react": "^0.15.0",
+    "@supabase/auth-helpers-shared": "^0.7.0",
     "@supabase/supabase-js": "^2.106.2",
     "clsx": "2.1.1",
     "lucide-react": "^1.17.0",
