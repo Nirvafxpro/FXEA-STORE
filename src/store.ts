@@ -176,6 +176,10 @@ export function adminLogout(): void { localStorage.removeItem('fxea_admin_token'
 
 // ─── Payment URL Builder ───────────────────────────────
 export function buildPaymentPageUrl(url: string, meta: Record<string, string>): string {
-  const enc = encodeURIComponent(JSON.stringify(meta));
-  return `${url}${url.includes('?') ? '&' : '?'}meta=${enc}`;
+  // Snippe expects base64 encoded JSON
+  const jsonStr = JSON.stringify(meta);
+  const base64 = typeof window !== 'undefined' 
+    ? window.btoa(jsonStr)
+    : Buffer.from(jsonStr).toString('base64');
+  return `${url}${url.includes('?') ? '&' : '?'}meta=${base64}`;
 }
