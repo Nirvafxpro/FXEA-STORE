@@ -11,7 +11,7 @@ export default function Checkout() {
   const [settings, setSettings] = useState<AdminSettings>(defaultSettings);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [form, setForm] = useState({ name:'', email:'', phone:'', mtAccount:'' });
+  const [form, setForm] = useState({ name:'', email:'', phone:'', mt_account:'' });
 
   useEffect(() => {
     const robotId = sessionStorage.getItem('checkout_robot_id');
@@ -30,7 +30,7 @@ export default function Checkout() {
       const orderId = generateId();
       const downloadToken = generateDownloadToken();
       const checkoutUrl = buildPaymentPageUrl(settings.paymentPageUrl, { order_id:orderId, user_id:form.email, plan:robot.id, ea_id:robot.id, customer_email:form.email, customer_phone:form.phone, mt_account:form.mtAccount||'N/A', amount:robot.price.toString() });
-      await saveOrder({ id:orderId, robotId:robot.id, robotName:robot.name, robotVersion:robot.version, customerName:form.name, customerEmail:form.email, customerPhone:form.phone, mtAccount:form.mtAccount||'', amount:robot.price, currency:'USD', status:'pending', paymentReference:'', checkoutUrl, downloadToken, createdAt:new Date().toISOString() });
+      await saveOrder({ id:orderId, product_id:robot.id, product_name:robot.name,  customer_name:form.name, customer_email:form.email, customer_phone:form.phone, mt_account:form.mtAccount||'', amount:robot.price, currency:'USD', status:'pending', payment_reference:'',  download_token:downloadToken, created_at:new Date().toISOString() });
       window.location.href = checkoutUrl;
     } catch (err: any) { setError(err.message || 'Something went wrong.'); setLoading(false); }
   };
