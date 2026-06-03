@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { TrendingUp, Menu, X, Search, User } from 'lucide-react';
+import { Menu, X, Search, User } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -20,7 +20,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Announcement bar */}
       <div className="bg-rs-blue text-white text-xs text-center py-1.5 px-4 font-medium">
-        🔔 Secure payments via M-Pesa &bull; Airtel Money &bull; Visa &bull; Mastercard — Powered by Snippe
+        🔔 Secure payments via M-Pesa • Airtel Money • Visa • Mastercard — Powered by Snippe
       </div>
 
       {/* Main header */}
@@ -28,13 +28,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 bg-rs-blue rounded-lg flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <span className="text-lg font-bold text-rs-gray-900 leading-none block">FXEA</span>
-              <span className="text-[10px] text-rs-gray-500 uppercase tracking-wider leading-none">Store</span>
-            </div>
+            <img src="/logo.png" alt="FX Robot Hub" className="h-10 w-auto" />
           </Link>
 
           {/* Search bar - desktop */}

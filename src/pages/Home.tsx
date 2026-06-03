@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { TrendingUp, Search, BarChart3, Shield, Truck, Star, ChevronRight } from 'lucide-react';
+import { BarChart3, Shield, Truck, Star, ChevronRight } from 'lucide-react';
 import { getRobots } from '../store';
 import { Robot } from '../types';
 import RobotCard from '../components/RobotCard';
@@ -36,8 +36,8 @@ export default function Home() {
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4 leading-tight">Premium Forex<br /><span className="text-rs-blue">Expert Advisors</span></h1>
             <p className="text-rs-gray-300 text-base sm:text-lg mb-8 max-w-lg">Automate your forex trading with battle-tested EAs. Verified performance, instant download, and secure payments.</p>
             <div className="flex flex-wrap gap-3">
-              <a href="#products" className="bg-rs-blue hover:bg-rs-blue-dark text-white font-semibold px-6 py-3 rounded transition-colors text-sm">Browse All EAs</a>
-              <a href="#featured" className="border border-white/30 hover:border-white text-white font-medium px-6 py-3 rounded transition-colors text-sm">Featured Picks</a>
+              <Link to="/#products" className="bg-rs-blue hover:bg-rs-blue-dark text-white font-semibold px-6 py-3 rounded transition-colors text-sm">Browse All EAs</Link>
+              <Link to="/#featured" className="border border-white/30 hover:border-white text-white font-medium px-6 py-3 rounded transition-colors text-sm">Featured Picks</Link>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function Home() {
       </section>
       {featured.length > 0 && (
         <section id="featured" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex items-center justify-between mb-6"><div><h2 className="text-xl font-bold text-rs-gray-900">Featured Expert Advisors</h2><p className="text-rs-gray-500 text-sm">Our most popular and highest-rated trading robots</p></div><Link to="/?cat=all" className="text-rs-blue hover:text-rs-blue-dark text-sm font-medium flex items-center gap-1">View All <ChevronRight className="w-4 h-4" /></Link></div>
+          <div className="flex items-center justify-between mb-6"><div><h2 className="text-xl font-bold text-rs-gray-900">Featured Expert Advisors</h2><p className="text-rs-gray-500 text-sm">Our most popular and highest-rated trading robots</p></div><Link to="/#products" className="text-rs-blue hover:text-rs-blue-dark text-sm font-medium flex items-center gap-1">View All <ChevronRight className="w-4 h-4" /></Link></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">{featured.map((r) => <RobotCard key={r.id} robot={r} />)}</div>
         </section>
       )}
@@ -74,12 +74,12 @@ export default function Home() {
       <footer className="bg-rs-gray-900 text-rs-gray-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div><div className="flex items-center gap-2 mb-4"><div className="w-8 h-8 bg-rs-blue rounded-lg flex items-center justify-center"><TrendingUp className="w-4 h-4 text-white" /></div><span className="text-white font-bold">FXEA Store</span></div><p className="text-sm leading-relaxed">Premium forex Expert Advisors with verified performance.</p></div>
+            <div><div className="flex items-center gap-2 mb-4"><img src="/logo.png" alt="FX Robot Hub" className="h-8 w-auto" /></div><p className="text-sm leading-relaxed">Premium forex Expert Advisors with verified performance.</p></div>
             <div><h4 className="text-white font-semibold text-sm mb-3">Shop</h4><ul className="space-y-2 text-sm"><li><Link to="/" className="hover:text-white">All EAs</Link></li><li><Link to="/?cat=Scalper" className="hover:text-white">Scalpers</Link></li><li><Link to="/?cat=Trend+Following" className="hover:text-white">Trend Following</Link></li></ul></div>
             <div><h4 className="text-white font-semibold text-sm mb-3">Payments</h4><p className="text-sm mb-2">Powered by <a href="https://snippe.sh" target="_blank" className="text-rs-blue hover:text-blue-400">Snippe</a></p><p className="text-xs text-rs-gray-500">M-Pesa • Airtel Money • Visa • Mastercard</p></div>
             <div><h4 className="text-white font-semibold text-sm mb-3">Support</h4><ul className="space-y-2 text-sm"><li className="hover:text-white cursor-pointer">FAQ</li><li className="hover:text-white cursor-pointer">Installation Guide</li></ul></div>
           </div>
-          <div className="border-t border-rs-gray-800 pt-6 text-center text-xs text-rs-gray-500">© 2025 FXEA Store. All rights reserved.</div>
+          <div className="border-t border-rs-gray-800 pt-6 text-center text-xs text-rs-gray-500">© 2025 FX Robot Hub. All rights reserved.</div>
         </div>
       </footer>
     </div>
