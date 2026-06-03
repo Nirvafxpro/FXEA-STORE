@@ -1,10 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/webhook/payment", "destination": "/api/webhook/payment" }
-  ],
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "nodejs20.x"
-    }
-  }
+    { "source": "/api/webhook/(.*)", "destination": "/api/webhook/$1" }
+  ]
 }
