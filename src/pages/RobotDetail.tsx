@@ -45,7 +45,7 @@ export default function RobotDetail() {
             <div className="flex items-center gap-3 mb-6"><span className="flex items-center gap-1 text-xs text-rs-gray-500"><ShieldCheck className="w-3.5 h-3.5 text-rs-green" />MT4</span><span className="flex items-center gap-1 text-xs text-rs-gray-500"><ShieldCheck className="w-3.5 h-3.5 text-rs-green" />MT5</span></div>
             <div className="bg-white border border-rs-gray-200 rounded-lg p-5">
               <div className="flex items-center justify-between mb-3"><span className="text-3xl font-bold text-rs-gray-900">${robot.price}</span><span className="text-xs text-rs-gray-500">One-time • Lifetime license</span></div>
-              {robot.inStock ? <button onClick={() => { sessionStorage.setItem('checkout_robot_id', robot.id); navigate('/checkout'); }} className="w-full bg-rs-blue hover:bg-rs-blue-dark text-white font-semibold py-3 rounded transition-colors flex items-center justify-center gap-2 text-sm"><ShoppingCart className="w-4 h-4" />Buy Now</button>
+              {robot.in_stock ? <button onClick={() => { sessionStorage.setItem('checkout_robot_id', robot.id); navigate('/checkout'); }} className="w-full bg-rs-blue hover:bg-rs-blue-dark text-white font-semibold py-3 rounded transition-colors flex items-center justify-center gap-2 text-sm"><ShoppingCart className="w-4 h-4" />Buy Now</button>
                : <button disabled className="w-full bg-rs-gray-200 text-rs-gray-400 font-semibold py-3 rounded cursor-not-allowed text-sm">Unavailable</button>}
               <p className="text-[10px] text-rs-gray-400 text-center mt-2">Secure payment via Snippe — M-Pesa, Airtel Money, Visa, Mastercard</p>
             </div>
