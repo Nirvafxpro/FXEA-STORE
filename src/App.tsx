@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './lib/auth';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -26,7 +26,7 @@ function ClientLayout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <AuthProvider>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           {/* ─── Client Routes (public, with navbar) ─── */}
           <Route path="/" element={<ClientLayout><Home /></ClientLayout>} />
@@ -52,7 +52,7 @@ export default function App() {
             <Route path="settings" element={<AdminSettings />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </AuthProvider>
   );
 }
